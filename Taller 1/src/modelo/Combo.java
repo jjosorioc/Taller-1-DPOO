@@ -5,12 +5,12 @@ import java.util.ArrayList;
 public class Combo implements Producto
 {
 	// Atributos
-	private double descuento;
+	private double descuento; // El porcentaje. Ej: 7% == 0.07;
 	private String nombreCombo;
 	
 	private ArrayList<Producto> productosCombo = new ArrayList<>();
 	
-	private int precioSinDescuento; //TODO: Cambiar porcentaje a double
+	private int precioSinDescuento; 
 	
 	
 	// Constructor
@@ -24,15 +24,15 @@ public class Combo implements Producto
 	// Métodos
 	public void agregarItemACombo(Producto itemCombo)
 	{
-		//TODO
+		this.productosCombo.add(itemCombo);
+		this.precioSinDescuento += itemCombo.getPrecio();
 	}
 	
 
 	@Override
 	public int getPrecio()
 	{
-		// TODO Auto-generated method stub
-		return 0;
+		return (int) (this.precioSinDescuento - (this.precioSinDescuento * this.descuento));
 	}
 
 
@@ -47,8 +47,13 @@ public class Combo implements Producto
 	@Override
 	public String getNombre()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return this.nombreCombo;
+	}
+	
+	
+	public ArrayList<Producto> getProductos()
+	{
+		return this.productosCombo;
 	}
 
 }

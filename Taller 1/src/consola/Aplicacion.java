@@ -4,7 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Iterator;
 
+import modelo.Combo;
 import modelo.Ingrediente;
+import modelo.Producto;
 import modelo.Restaurante;
 
 public class Aplicacion

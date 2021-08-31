@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+
+
 import java.io.BufferedReader;
 
 public class Restaurante
@@ -17,7 +19,7 @@ public class Restaurante
 	private ArrayList<Ingrediente> ingredientes = new ArrayList<>();
 	private ArrayList<Producto> productos = new ArrayList<>();
 	
-	private Map<String, ArrayList<Producto>> combosMap = new HashMap<>();
+	private ArrayList<Combo> comboArray = new ArrayList<>();
 	
 	
 	// Constructor
@@ -58,6 +60,12 @@ public class Restaurante
 	}
 	
 	
+	public ArrayList<Combo> getCombos()
+	{
+		return this.comboArray;
+	}
+	
+	
 	public void cargarInformacionRestaurante(File archivoIngredientes, File archivoMenu, File archivoCombos) throws IOException
 	{
 		cargarIngredientes(archivoIngredientes);
@@ -93,27 +101,6 @@ public class Restaurante
 	}
 	
 	
-	private void cargarCombos(File archivoCombos) throws IOException
-	{
-		//combos.txt
-		archivoCombos.createNewFile();
-		Reader targetReader = new FileReader(archivoCombos);
-		
-		BufferedReader bReader = new BufferedReader(targetReader);
-		
-		String linea = bReader.readLine();
-		
-		while (linea != null)
-		{
-			// Separar los valors que están en linea separados por ;
-			String[] parteStrings = linea.split(";");
-			//TODO: Cargar todo (Según producto)
-			linea = bReader.readLine();
-		}
-		
-	}
-	
-	
 	private void cargarMenu(File archivoMenu) throws IOException
 	{
 		//menu.txt
@@ -136,8 +123,53 @@ public class Restaurante
 			
 			this.productos.add(nuevoProducto);
 			linea = br.readLine();
-			
-			
 		}
+	}
+	
+	
+	private void cargarCombos(File archivoCombos) throws IOException
+	{
+		//combos.txt
+		archivoCombos.createNewFile();
+		Reader targetReader = new FileReader(archivoCombos);
+		
+		BufferedReader br = new BufferedReader(targetReader);
+		
+		String linea = br.readLine();
+		
+		while (linea != null)
+		{
+			// Separar los valors que están en linea separados por ;
+			String[] parteStrings = linea.split(";");
+			
+			String nombreComboString = parteStrings[0];
+			
+			double descuento = Double.parseDouble((parteStrings[1]).split("%")[0])/100;
+			
+			Combo nuevoCombo = new Combo(nombreComboString, descuento);
+			
+			int iteracion = 0; // Para saber cuándo empiezan los productos.
+			for (String indice: parteStrings)
+			{
+				if (iteracion >= 2)
+				{	
+					for (Producto p: this.productos)
+					{
+						
+						if (p.getNombre().equals(indice)) // Si el nombre del producto es igual al String indice
+						{
+							nuevoCombo.agregarItemACombo(p);
+						}
+					}
+				}
+				iteracion ++;
+			}
+			
+			
+			this.comboArray.add(nuevoCombo);
+			
+			linea = br.readLine();
+		}
+		
 	}
 }
