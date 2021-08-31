@@ -61,6 +61,8 @@ public class Restaurante
 	public void cargarInformacionRestaurante(File archivoIngredientes, File archivoMenu, File archivoCombos) throws IOException
 	{
 		cargarIngredientes(archivoIngredientes);
+		cargarMenu(archivoMenu);
+		cargarCombos(archivoCombos);
 	}
 	
 	
@@ -91,9 +93,24 @@ public class Restaurante
 	}
 	
 	
-	private void cargarMenu(File archivoMenu)
+	private void cargarMenu(File archivoMenu) throws IOException
 	{
-		//TODO
+		//combos.txt
+		archivoMenu.createNewFile();
+		Reader targetReader = new FileReader(archivoMenu);
+		
+		BufferedReader bReader = new BufferedReader(targetReader);
+		
+		String linea = bReader.readLine();
+		
+		while (linea != null)
+		{
+			// Separar los valors que están en linea separados por ;
+			String[] parteStrings = linea.split(";");
+			//TODO: Cargar todo (Según producto)
+			linea = bReader.readLine();
+		}
+		
 	}
 	
 	

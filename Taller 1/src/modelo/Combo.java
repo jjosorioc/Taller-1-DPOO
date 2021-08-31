@@ -1,10 +1,16 @@
 package modelo;
 
+import java.util.ArrayList;
+
 public class Combo implements Producto
 {
 	// Atributos
 	private double descuento;
 	private String nombreCombo;
+	
+	private ArrayList<Producto> productosCombo = new ArrayList<>();
+	
+	private int precioSinDescuento; //TODO: Cambiar porcentaje a double
 	
 	
 	// Constructor
@@ -29,15 +35,17 @@ public class Combo implements Producto
 		return 0;
 	}
 
+
 	@Override
-	public String getNombre()
+	public String generarTextoFactura()
 	{
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
+	
 	@Override
-	public String generarTextoFactura()
+	public String getNombre()
 	{
 		// TODO Auto-generated method stub
 		return null;
