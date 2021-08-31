@@ -93,11 +93,11 @@ public class Restaurante
 	}
 	
 	
-	private void cargarMenu(File archivoMenu) throws IOException
+	private void cargarCombos(File archivoCombos) throws IOException
 	{
 		//combos.txt
-		archivoMenu.createNewFile();
-		Reader targetReader = new FileReader(archivoMenu);
+		archivoCombos.createNewFile();
+		Reader targetReader = new FileReader(archivoCombos);
 		
 		BufferedReader bReader = new BufferedReader(targetReader);
 		
@@ -114,8 +114,30 @@ public class Restaurante
 	}
 	
 	
-	private void cargarCombos(File archivoCombos)
+	private void cargarMenu(File archivoMenu) throws IOException
 	{
-		//TODO
+		//menu.txt
+		archivoMenu.createNewFile();
+		Reader targetReader = new FileReader(archivoMenu);
+		
+		BufferedReader br = new BufferedReader(targetReader);
+		
+		String linea = br.readLine();
+		
+		while(linea != null) 
+		{
+			// Separar los valores que estaban en una línea.
+			String[] parteStrings = linea.split(";");
+			
+			String nombreProducto = parteStrings[0];
+			int precioProducto = Integer.parseInt(parteStrings[1]);
+			
+			ProductoMenu nuevoProducto = new ProductoMenu(nombreProducto, precioProducto);
+			
+			this.productos.add(nuevoProducto);
+			linea = br.readLine();
+			
+			
+		}
 	}
 }
