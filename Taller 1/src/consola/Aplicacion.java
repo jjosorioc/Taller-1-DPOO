@@ -1,4 +1,4 @@
-package Aplicacion;
+package consola;
 
 public class Aplicacion
 {
