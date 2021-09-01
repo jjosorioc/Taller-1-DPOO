@@ -17,9 +17,9 @@ public class Restaurante
 {
 	// Atributos
 	private ArrayList<Ingrediente> ingredientes = new ArrayList<>();
-	private ArrayList<Producto> productos = new ArrayList<>();
+	private ArrayList<Producto> menuBase = new ArrayList<>();
 	
-	private ArrayList<Combo> comboArray = new ArrayList<>();
+	private ArrayList<Combo> combos = new ArrayList<>();
 	
 	
 	// Constructor
@@ -50,7 +50,7 @@ public class Restaurante
 	
 	public ArrayList<Producto> getMenuBase()
 	{
-		return this.productos;
+		return this.menuBase;
 	}
 	
 	
@@ -62,7 +62,7 @@ public class Restaurante
 	
 	public ArrayList<Combo> getCombos()
 	{
-		return this.comboArray;
+		return this.combos;
 	}
 	
 	
@@ -121,7 +121,7 @@ public class Restaurante
 			
 			ProductoMenu nuevoProducto = new ProductoMenu(nombreProducto, precioProducto);
 			
-			this.productos.add(nuevoProducto);
+			this.menuBase.add(nuevoProducto);
 			linea = br.readLine();
 		}
 	}
@@ -153,7 +153,7 @@ public class Restaurante
 			{
 				if (iteracion >= 2)
 				{	
-					for (Producto p: this.productos)
+					for (Producto p: this.menuBase)
 					{
 						
 						if (p.getNombre().equals(indice)) // Si el nombre del producto es igual al String indice
@@ -166,7 +166,7 @@ public class Restaurante
 			}
 			
 			
-			this.comboArray.add(nuevoCombo);
+			this.combos.add(nuevoCombo);
 			
 			linea = br.readLine();
 		}

@@ -8,9 +8,7 @@ public class Combo implements Producto
 	private double descuento; // El porcentaje. Ej: 7% == 0.07;
 	private String nombreCombo;
 	
-	private ArrayList<Producto> productosCombo = new ArrayList<>();
-	
-	private int precioSinDescuento; 
+	private ArrayList<Producto> itemsCombo = new ArrayList<>();
 	
 	
 	// Constructor
@@ -24,15 +22,20 @@ public class Combo implements Producto
 	// Métodos
 	public void agregarItemACombo(Producto itemCombo)
 	{
-		this.productosCombo.add(itemCombo);
-		this.precioSinDescuento += itemCombo.getPrecio();
+		this.itemsCombo.add(itemCombo);
 	}
 	
 
 	@Override
 	public int getPrecio()
 	{
-		return (int) (this.precioSinDescuento - (this.precioSinDescuento * this.descuento));
+		int precioSinDescuento = 0;
+		for (Producto p: this.itemsCombo)
+		{
+			precioSinDescuento += p.getPrecio();
+		}
+		
+		return (int) (precioSinDescuento - (precioSinDescuento * this.descuento));
 	}
 
 
@@ -53,7 +56,7 @@ public class Combo implements Producto
 	
 	public ArrayList<Producto> getProductos()
 	{
-		return this.productosCombo;
+		return this.itemsCombo;
 	}
 
 }
