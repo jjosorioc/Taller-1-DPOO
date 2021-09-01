@@ -21,6 +21,9 @@ public class Restaurante
 	
 	private ArrayList<Combo> combos = new ArrayList<>();
 	
+	private ArrayList<Pedido> pedidos = new ArrayList<>();
+	private Pedido pedidoEnCurso;
+	
 	
 	// Constructor
 	public Restaurante()
@@ -32,19 +35,19 @@ public class Restaurante
 	// Métodos
 	public void iniciarPedido(String nombreCliente, String direccionCliente)
 	{
-		//TODO
+		this.pedidoEnCurso = new Pedido(nombreCliente, direccionCliente);
 	}
 	
 	
 	public void cerrarYGuardarPedido()
 	{
-		//TODO
+		//TODO Si sabemos, pero hay que hacer el resto!
 	}
 	
 	
 	public Pedido getPedidoEnCurso()
 	{
-		return null; //TODO
+		return this.pedidoEnCurso;
 	}
 	
 	
