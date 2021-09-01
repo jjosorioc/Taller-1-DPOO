@@ -18,7 +18,7 @@ public class Aplicacion
 		Restaurante startRestaurante = new Restaurante();
 		
 		String nuestroDirectory = System.getProperty("user.dir");
-		
+
 		// Carga de la información.
 		startRestaurante.cargarInformacionRestaurante((new File(nuestroDirectory + "/data/ingredientes.txt")), (new File(nuestroDirectory + "/data/menu.txt")), (new File(nuestroDirectory + "/data/combos.txt")));
 		

@@ -33,8 +33,7 @@ public class ProductoMenu implements Producto
 	@Override
 	public String generarTextoFactura()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return ("$" + this.getPrecio() + " |" + this.getNombre());
 	}
 
 }

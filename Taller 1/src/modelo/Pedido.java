@@ -1,13 +1,15 @@
 package modelo;
 
 import java.io.File;
+import java.util.ArrayList;
+
 
 public class Pedido
 {
 	// Atributos
 	
 
-	private int numeroPedidos;
+	private static int numeroPedidos;
 	
 	private int idPedido;
 	
@@ -15,7 +17,7 @@ public class Pedido
 	
 	private String direccionCliente;
 	
-	//ARRAYLIST de productos
+	private ArrayList<Producto> itemsPedido = new ArrayList<>();
 	
 	// Constructor
 	
@@ -27,6 +29,9 @@ public class Pedido
 	{
 		this.nombreCliente = nombreCliente;
 		this.direccionCliente = direccionCliente;
+		
+		// Cuando se crea una instancia, se suma 1 a numeroPedidos.
+		Pedido.numeroPedidos ++;
 	}
 	
 	
@@ -40,31 +45,53 @@ public class Pedido
 	
 	public void agregarProducto(Producto nuevoItem)
 	{
-		// TODO
+		this.itemsPedido.add(nuevoItem);
 	}
 	
 	
 	private int getPrecioNetoPedido()
 	{
-		return 0; //TODO
+		// Sin IVA
+		
+		int precio = 0;
+		
+		for (Producto p : itemsPedido)
+		{
+			precio += p.getPrecio();
+		}
+		
+		return precio;
 	}
 	
 	
 	private int getPrecioTotalPedido()
 	{
-		return 0; //TODO
+		//Neto + IVA
+		return this.getPrecioNetoPedido() + this.getPrecioIVAPedido();
 	}
 	
 	
 	private int getPrecioIVAPedido()
 	{
-		return 0; //TODO
+		// Cuánto es el IVA
+		return (int) (this.getPrecioNetoPedido() * 0.19);
 	}
 	
 	
 	private String generarTextoFactura()
 	{
-		return null; //TODO
+		String facturaString = "";
+		facturaString += "\nID: " + this.idPedido + " | Cliente" + this.nombreCliente;
+		
+		for (Producto p: itemsPedido)
+		{
+			facturaString += "\n- " + p.generarTextoFactura();
+		}
+		
+		facturaString += "\nPrecio Neto: " + this.getPrecioNetoPedido();
+		facturaString += "\nPrecio IVA: " + this.getPrecioIVAPedido();
+		facturaString += "\nPrecio Total: " + this.getPrecioTotalPedido();
+		return facturaString;
 	}
 	
 	
