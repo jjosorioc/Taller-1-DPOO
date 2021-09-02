@@ -29,7 +29,7 @@ public class Pedido
 	{
 		this.nombreCliente = nombreCliente;
 		this.direccionCliente = direccionCliente;
-		
+		//TODO num random para el id
 		// Cuando se crea una instancia, se suma 1 a numeroPedidos.
 		Pedido.numeroPedidos ++;
 	}
@@ -78,10 +78,10 @@ public class Pedido
 	}
 	
 	
-	private String generarTextoFactura()
+	public String generarTextoFactura() //TODO Volver PRIVATE
 	{
 		String facturaString = "";
-		facturaString += "\nID: " + this.idPedido + " | Cliente" + this.nombreCliente;
+		facturaString += "\nID: " + this.idPedido + " | Cliente: " + this.nombreCliente;
 		
 		for (Producto p: itemsPedido)
 		{

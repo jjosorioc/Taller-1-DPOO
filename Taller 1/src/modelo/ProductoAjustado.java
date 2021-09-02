@@ -19,6 +19,17 @@ public class ProductoAjustado implements Producto
 	}
 
 	// Herencia
+	
+	public void addAgregado(Ingrediente nuevo)
+	{
+		agregados.add(nuevo);
+	}
+	
+	public void addEliminado(Ingrediente viejo)
+	{
+		eliminados.add(viejo);
+	}
+	
 
 	@Override
 	public String getNombre()
@@ -66,5 +77,6 @@ public class ProductoAjustado implements Producto
 	{
 		return ("$" + this.getPrecio() + " |" + this.getNombre());
 	}
+	
 
 }
