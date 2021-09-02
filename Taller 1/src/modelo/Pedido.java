@@ -1,8 +1,10 @@
 package modelo;
 
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
-
+import java.util.Random;
 
 public class Pedido
 {
@@ -19,6 +21,8 @@ public class Pedido
 	
 	private ArrayList<Producto> itemsPedido = new ArrayList<>();
 	
+	private static ArrayList<Integer> idsPedidos =  new ArrayList<>();
+	
 	// Constructor
 	
 	/**
@@ -29,8 +33,19 @@ public class Pedido
 	{
 		this.nombreCliente = nombreCliente;
 		this.direccionCliente = direccionCliente;
-		//TODO num random para el id
-		// Cuando se crea una instancia, se suma 1 a numeroPedidos.
+		
+		
+		Random rand = new Random();
+		this.idPedido = rand.nextInt(1000000);
+		
+		while (Pedido.idsPedidos.contains(this.idPedido))
+		{
+			this.idPedido = rand.nextInt(1000000);
+			Pedido.idsPedidos.add(this.idPedido);
+		}
+		
+		
+		
 		Pedido.numeroPedidos ++;
 	}
 	
@@ -95,9 +110,14 @@ public class Pedido
 	}
 	
 	
-	public void guardarFactura(File archivo)
+	public void guardarFactura(File archivo) throws IOException
 	{
-		//TODO
+		if (archivo.createNewFile())
+		{
+			FileWriter myWriter = new FileWriter(archivo);
+			myWriter.write(this.generarTextoFactura());
+			myWriter.close();
+		}
 	}
 
 }

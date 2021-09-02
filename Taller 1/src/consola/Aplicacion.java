@@ -1,13 +1,24 @@
 package consola;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Map;
+
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.io.Writer;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.io.BufferedReader;
 
 import modelo.Combo;
@@ -47,7 +58,7 @@ public class Aplicacion
 		System.out.println("\n4. Apagar aplicación.\n");
 	}
 
-	public void ejecutarOpcion()
+	public void ejecutarOpcion() throws IOException
 	{
 		System.out.println("Iniciando programa...");
 
@@ -104,7 +115,7 @@ public class Aplicacion
 							System.out.println("\n****Si no desea AGREGAR o ELIMINAR, oprima (ENTER)****");
 							String[] agregadosIngredienteStrings = input("Ingrese el numero de los ingredientes que desea agregar separados por espacios").split(" ");
 							String[] eliminadosIngredienteStrings = input("Ingrese el numero de los ingredientes que desea eliminar separados por espacios").split(" ");
-							
+
 							if (!agregadosIngredienteStrings[0].equals("")) // Si no seleccionó nada
 							{
 								for (String num : agregadosIngredienteStrings)
@@ -148,9 +159,20 @@ public class Aplicacion
 
 						startRestaurante.getPedidoEnCurso().agregarProducto(combosHashMap.get(comboSeleccionado));
 					}
+
 				}
 				
-				
+				// OPCION 2 DEL MENÚ
+				else if (opcion_seleccionada == 2)
+				{
+					
+					String nuestroDirectory = System.getProperty("user.dir") + "/facturas/";
+					
+					File newFile = new File(nuestroDirectory + startRestaurante.getPedidoEnCurso().getIdPedido() + ".txt");
+					startRestaurante.getPedidoEnCurso().guardarFactura(newFile);
+
+				}
+
 			} catch (NumberFormatException e)
 			{
 				System.out.println("Debe seleccionar uno de los números de las opciones.");
