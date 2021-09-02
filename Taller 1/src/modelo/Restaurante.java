@@ -21,7 +21,7 @@ public class Restaurante
 	
 	private ArrayList<Combo> combos = new ArrayList<>();
 	
-	private ArrayList<Pedido> pedidos = new ArrayList<>();
+	private static ArrayList<Pedido> pedidos = new ArrayList<>();
 	private Pedido pedidoEnCurso;
 	
 	
@@ -72,6 +72,12 @@ public class Restaurante
 	public ArrayList<Combo> getCombos()
 	{
 		return this.combos;
+	}
+	
+	
+	public static ArrayList<Pedido> getPedidos()
+	{
+		return Restaurante.pedidos;
 	}
 	
 	

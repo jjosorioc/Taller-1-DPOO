@@ -23,6 +23,7 @@ import java.io.BufferedReader;
 
 import modelo.Combo;
 import modelo.Ingrediente;
+import modelo.Pedido;
 import modelo.Producto;
 import modelo.ProductoAjustado;
 import modelo.ProductoMenu;
@@ -161,11 +162,45 @@ public class Aplicacion
 					}
 
 				}
-				
+
 				// OPCION 2 DEL MENÚ
 				else if (opcion_seleccionada == 2)
 				{
 					startRestaurante.cerrarYGuardarPedido();
+				}
+				
+				
+				// OPCION 3 DEL MENÚ
+				else if (opcion_seleccionada == 3)
+				{
+					int numPedidos = 0;
+					Map<String, Pedido> pedidosIDHashMap = new HashMap<>();
+					for (Pedido p : Restaurante.getPedidos())
+					{
+						System.out.println(numPedidos + " - " + p.getIdPedido());
+						pedidosIDHashMap.put(Integer.toString(numPedidos), p);
+
+						numPedidos++;
+					}
+
+					String idPedidoInputString = input("Ingrese la opción del pedido que desea ver");
+
+					System.out.print("Pedido: " + pedidosIDHashMap.get(idPedidoInputString).getIdPedido() + "\n");
+
+					System.out.println(pedidosIDHashMap.get(idPedidoInputString).generarTextoFactura());
+				}
+				
+				
+				//OPCION 4 DEL MENÚ
+				else if (opcion_seleccionada == 4)
+				{
+					System.out.println("\nSaliendo de la aplicación ...");
+					System.out.println("....");
+					System.out.println("...");
+					System.out.println("..");
+					System.out.println(".");
+					System.out.println("\nBYE :)");
+					continuar = false;
 				}
 
 			} catch (NumberFormatException e)
