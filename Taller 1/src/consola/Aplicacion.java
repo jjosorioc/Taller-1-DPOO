@@ -165,12 +165,7 @@ public class Aplicacion
 				// OPCION 2 DEL MENÚ
 				else if (opcion_seleccionada == 2)
 				{
-					
-					String nuestroDirectory = System.getProperty("user.dir") + "/facturas/";
-					
-					File newFile = new File(nuestroDirectory + startRestaurante.getPedidoEnCurso().getIdPedido() + ".txt");
-					startRestaurante.getPedidoEnCurso().guardarFactura(newFile);
-
+					startRestaurante.cerrarYGuardarPedido();
 				}
 
 			} catch (NumberFormatException e)

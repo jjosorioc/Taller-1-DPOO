@@ -39,9 +39,15 @@ public class Restaurante
 	}
 	
 	
-	public void cerrarYGuardarPedido()
+	public void cerrarYGuardarPedido() throws IOException
 	{
-		//TODO Si sabemos, pero hay que hacer el resto!
+		String nuestroDirectory = System.getProperty("user.dir") + "/facturas/";
+		
+		File newFile = new File(nuestroDirectory + this.getPedidoEnCurso().getIdPedido() + ".txt");
+		this.getPedidoEnCurso().guardarFactura(newFile);
+		
+		this.pedidos.add(pedidoEnCurso);
+		this.pedidoEnCurso = null; // Se cierra el pedido.
 	}
 	
 	
