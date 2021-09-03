@@ -42,12 +42,14 @@ public class Aplicacion
 
 	public void mostrarMenu()
 	{
+		System.out.println("\n******************** MENÚ PRINCIPAL ********************\n");
 		System.out.println("\nBienvenido al restaurante JJ burgers!");
 		System.out.println("\n0. Iniciar un nuevo pedido.");
 		System.out.println("\n1. Agregar un elemento a un pedido.");
 		System.out.println("\n2. Cerrar un pedido y guardar la factura.");
 		System.out.println("\n3. Consultar la información de un pedido dado su ID.");
 		System.out.println("\n4. Apagar aplicación.\n");
+		System.out.println("*********************************************************\n");
 	}
 
 	public void ejecutarOpcion() throws IOException
@@ -64,17 +66,20 @@ public class Aplicacion
 				int opcion_seleccionada = Integer.parseInt(input("Por favor seleccione una opción"));
 				if (opcion_seleccionada == 0)
 				{
+					System.out.println("\n******************** INICIAR UN NUEVO PEDIDO ********************");
 					String nombreCliente = new String(input("\nIngrese su nombre"));
 					String direccionClient = new String(input("\nIngrese su dirección"));
 					startRestaurante.iniciarPedido(nombreCliente, direccionClient);
 				} else if (opcion_seleccionada == 1)
 				{
+					System.out.println("\n******************** AGREGAR UN ELEMENTO ********************");
 					System.out.println("\nDesea agregar un (1)PRODUCTO o un (2)COMBO\n");
 					int agregar = Integer.parseInt(input("\nSeleccione la opción 1 o 2"));
 
 					// Para agregar un PRODUCTO
 					if (agregar == 1)
 					{
+						System.out.println("\n******************** LISTA PRODUCTOS ********************\n");
 						Map<String, Producto> productoHash = new HashMap<>();
 
 						int indice = 0;
@@ -86,12 +91,13 @@ public class Aplicacion
 							indice++;
 						}
 
-						String productoElegido = input("Ingrese el número del producto que desea agregar"); // Producto elegido
-						String deseaAgregaroQuitar = input("¿Desea agregar o quitar un ingrediente? (Y o N)");
+						String productoElegido = input("\nIngrese el número del producto que desea agregar"); // Producto elegido
+ 						String deseaAgregaroQuitar = input("\n¿Desea agregar o quitar un ingrediente? (Y o N)");
 
 						// Para agregar un PRODUCTO AJUSTADO
 						if (deseaAgregaroQuitar.equals("Y"))
 						{
+							System.out.println("\n******************** LISTA INGREDIENTES ********************\n");
 							ProductoAjustado ajustado = new ProductoAjustado((ProductoMenu) productoHash.get(productoElegido)); // Producto ajustado
 							Map<String, Ingrediente> ingredienteHashMap = new HashMap<>(); // Hash para guardar los ingredientes
 
@@ -105,8 +111,8 @@ public class Aplicacion
 							}
 
 							System.out.println("\n****Si no desea AGREGAR o ELIMINAR, oprima (ENTER)****");
-							String[] agregadosIngredienteStrings = input("Ingrese el numero de los ingredientes que desea agregar separados por espacios").split(" ");
-							String[] eliminadosIngredienteStrings = input("Ingrese el numero de los ingredientes que desea eliminar separados por espacios").split(" ");
+							String[] agregadosIngredienteStrings = input("\nIngrese el numero de los ingredientes que desea agregar separados POR ESPACIOS").split(" ");
+ 							String[] eliminadosIngredienteStrings = input("\nIngrese el numero de los ingredientes que desea eliminar separados POR ESPACIOS").split(" ");
 
 							if (!agregadosIngredienteStrings[0].equals("")) // Si no seleccionó nada
 							{
@@ -138,6 +144,7 @@ public class Aplicacion
 					// Para agregar un combo
 					if (agregar == 2)
 					{
+						System.out.println("\n******************** LISTA COMBOS ********************\n");
 						Map<String, Combo> combosHashMap = new HashMap<>();
 						int indiceCombos = 0;
 						for (Combo c : startRestaurante.getCombos())
@@ -147,7 +154,7 @@ public class Aplicacion
 							indiceCombos++;
 						}
 
-						String comboSeleccionado = input("Ingrese el número del combo que desea");
+						String comboSeleccionado = input("\nIngrese el número del combo que desea");
 
 						startRestaurante.getPedidoEnCurso().agregarProducto(combosHashMap.get(comboSeleccionado));
 					}
@@ -164,6 +171,7 @@ public class Aplicacion
 				// OPCION 3 DEL MENÚ
 				else if (opcion_seleccionada == 3)
 				{
+					System.out.println("\n******************** CONSULTA POR ID ********************\n");
 					int numPedidos = 0;
 					Map<String, Pedido> pedidosIDHashMap = new HashMap<>();
 					for (Pedido p : Restaurante.getPedidos())
@@ -174,9 +182,11 @@ public class Aplicacion
 						numPedidos++;
 					}
 
-					String idPedidoInputString = input("Ingrese la opción del pedido que desea ver");
+					String idPedidoInputString = input("\nIngrese la opción del pedido que desea ver\n\nEscriba únicamente el índice (Ejemplo: si se muestra 0 - 158531 ingrese 0)\"");
 
-					System.out.print("Pedido: " + pedidosIDHashMap.get(idPedidoInputString).getIdPedido() + "\n");
+ 					System.out.println("\n******************** FACTURA ********************\n");
+
+ 					System.out.print("\nPedido: " + pedidosIDHashMap.get(idPedidoInputString).getIdPedido() + "\n");
 
 					System.out.println(pedidosIDHashMap.get(idPedidoInputString).generarTextoFactura());
 				}
