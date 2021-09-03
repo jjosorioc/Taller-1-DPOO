@@ -96,7 +96,7 @@ public class Pedido
 	public String generarTextoFactura() //TODO Volver PRIVATE
 	{
 		String facturaString = "";
-		facturaString += "\nID: " + this.idPedido + " | Cliente: " + this.nombreCliente;
+		facturaString += "\nID: " + this.idPedido + " | Cliente: " + this.nombreCliente + " | Dirección: " + this.direccionCliente; 
 		
 		for (Producto p: itemsPedido)
 		{
