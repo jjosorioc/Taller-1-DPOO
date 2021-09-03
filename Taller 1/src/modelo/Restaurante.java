@@ -41,15 +41,14 @@ public class Restaurante
 
 		File newFile = new File(nuestroDirectory + this.getPedidoEnCurso().getIdPedido() + ".txt");
 		this.getPedidoEnCurso().guardarFactura(newFile);
-		
+
 		if (this.getPedidoEnCurso().equals(this.pedidos))
 		{
 			System.out.println("\nEXISTE un pedido idéntico a este.");
-		}
-		else {
+		} else
+		{
 			System.out.println("\nNO EXISTE un pedido idéntico a este.");
 		}
-		
 
 		this.pedidos.add(pedidoEnCurso);
 		this.pedidoEnCurso = null; // Se cierra el pedido.
@@ -64,13 +63,11 @@ public class Restaurante
 	{
 		return this.menuBase;
 	}
-	
-	
+
 	public ArrayList<Producto> getBebidas()
 	{
 		return this.bebidas;
 	}
-	
 
 	public ArrayList<Ingrediente> getIngredientes()
 	{
@@ -112,8 +109,9 @@ public class Restaurante
 
 			String nombreIngrediente = parteStrings[0];
 			int precioIngrediente = Integer.parseInt(parteStrings[1]);
+			int cantidadCalorias = Integer.parseInt(parteStrings[2]);
 
-			Ingrediente nuevoIngrediente = new Ingrediente(nombreIngrediente, precioIngrediente);
+			Ingrediente nuevoIngrediente = new Ingrediente(nombreIngrediente, precioIngrediente, cantidadCalorias);
 
 			this.ingredientes.add(nuevoIngrediente);
 			linea = br.readLine();
@@ -138,8 +136,9 @@ public class Restaurante
 
 			String nombreProducto = parteStrings[0];
 			int precioProducto = Integer.parseInt(parteStrings[1]);
+			int cantidadCalorias = Integer.parseInt(parteStrings[2]);
 
-			ProductoMenu nuevoProducto = new ProductoMenu(nombreProducto, precioProducto);
+			ProductoMenu nuevoProducto = new ProductoMenu(nombreProducto, precioProducto, cantidadCalorias);
 
 			this.menuBase.add(nuevoProducto);
 			linea = br.readLine();
@@ -164,8 +163,9 @@ public class Restaurante
 
 			String nombreProducto = parteStrings[0];
 			int precioProducto = Integer.parseInt(parteStrings[1]);
-
-			ProductoMenu nuevoProducto = new ProductoMenu(nombreProducto, precioProducto);
+			int cantidadCalorias = Integer.parseInt(parteStrings[2]);
+			
+			ProductoMenu nuevoProducto = new ProductoMenu(nombreProducto, precioProducto, cantidadCalorias);
 
 			this.menuBase.add(nuevoProducto);
 			linea = br.readLine();

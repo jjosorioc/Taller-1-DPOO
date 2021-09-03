@@ -7,12 +7,15 @@ public class Ingrediente
 	
 	private int costoAdicional;
 	
+	private int calorias;
+	
 	// Constructor
 	
-	public Ingrediente(String nombre, int costoAdicional)
+	public Ingrediente(String nombre, int costoAdicional, int calorias)
 	{
 		this.nombre = nombre;
 		this.costoAdicional = costoAdicional;
+		this.calorias = calorias;
 	}
 
 	
