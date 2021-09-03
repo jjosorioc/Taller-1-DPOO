@@ -1,8 +1,11 @@
 package modelo;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -118,6 +121,43 @@ public class Pedido
 			myWriter.write(this.generarTextoFactura());
 			myWriter.close();
 		}
+	}
+	
+	
+	public boolean equals(ArrayList<Pedido> pedidos)
+	{
+//		String nuestroDirectory = System.getProperty("user.dir") + "/facturas";
+//		File dirFile = new File(nuestroDirectory);
+//		
+//		for (File f: dirFile.listFiles())
+//		{
+//			f.createNewFile();
+//			Reader targetReader = new FileReader(f);
+//			
+//			BufferedReader bReader = new BufferedReader(targetReader);
+//			
+//			String textoFileString = bReader.toString();
+//			
+//			if ((this.generarTextoFactura()).equals(textoFileString))
+//			{
+//				return true;
+//			}
+//			
+//		}
+//		return false;
+		
+		// Pedidos mientras la app haya corrido.
+		
+		for (Pedido p: pedidos)
+		{
+			if (this.itemsPedido.equals(p.itemsPedido))
+			{
+				return (true);
+			}
+		}
+		
+		return (false);
+		
 	}
 
 }

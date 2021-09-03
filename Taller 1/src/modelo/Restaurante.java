@@ -41,6 +41,15 @@ public class Restaurante
 
 		File newFile = new File(nuestroDirectory + this.getPedidoEnCurso().getIdPedido() + ".txt");
 		this.getPedidoEnCurso().guardarFactura(newFile);
+		
+		if (this.getPedidoEnCurso().equals(this.pedidos))
+		{
+			System.out.println("\nEXISTE un pedido idéntico a este.");
+		}
+		else {
+			System.out.println("\nNO EXISTE un pedido idéntico a este.");
+		}
+		
 
 		this.pedidos.add(pedidoEnCurso);
 		this.pedidoEnCurso = null; // Se cierra el pedido.
