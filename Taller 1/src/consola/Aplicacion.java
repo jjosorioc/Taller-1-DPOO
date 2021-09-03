@@ -1,24 +1,18 @@
 package consola;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+
 import java.io.IOException;
-import java.util.ArrayList;
+
 import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.Iterator;
+
 import java.util.Map;
 
+
+
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
-import java.io.Writer;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+
+
 import java.io.BufferedReader;
 
 import modelo.Combo;
@@ -41,7 +35,7 @@ public class Aplicacion
 
 		// Carga de la información.
 		startRestaurante.cargarInformacionRestaurante((new File(nuestroDirectory + "/data/ingredientes.txt")), (new File(nuestroDirectory + "/data/menu.txt")),
-				(new File(nuestroDirectory + "/data/combos.txt")));
+				(new File(nuestroDirectory + "/data/combos.txt")), (new File(nuestroDirectory + "/data/bebidas.txt")));
 
 		Aplicacion aplicacion = new Aplicacion();
 
@@ -93,6 +87,14 @@ public class Aplicacion
 							productoHash.put(Integer.toString(indice), p);
 
 							indice++;
+						}
+						
+						for (Producto p: startRestaurante.getBebidas())
+						{
+							System.out.println(indice + " - " + p.getNombre());
+							productoHash.put(Integer.toString(indice), p);
+							
+							indice ++;
 						}
 
 						String productoElegido = input("Ingrese el número del producto que desea agregar"); // Producto elegido
