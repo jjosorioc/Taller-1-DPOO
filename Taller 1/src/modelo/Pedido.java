@@ -101,11 +101,15 @@ public class Pedido
 		String facturaString = "";
 		facturaString += "\nID: " + this.idPedido + " | Cliente: " + this.nombreCliente + " | Dirección: " + this.direccionCliente; 
 		
+		int caloriasNetas = 0;
+		
 		for (Producto p: itemsPedido)
 		{
+			caloriasNetas += p.getCalorias();
 			facturaString += "\n- " + p.generarTextoFactura();
 		}
 		
+		facturaString += "\nCALORÍAS NETAS: " + caloriasNetas;
 		facturaString += "\nPrecio Neto: " + this.getPrecioNetoPedido();
 		facturaString += "\nPrecio IVA: " + this.getPrecioIVAPedido();
 		facturaString += "\nPrecio Total: " + this.getPrecioTotalPedido();

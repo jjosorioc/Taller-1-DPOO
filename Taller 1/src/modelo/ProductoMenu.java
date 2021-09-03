@@ -34,7 +34,7 @@ public class ProductoMenu implements Producto
 	@Override
 	public String generarTextoFactura()
 	{
-		return ("$" + this.getPrecio() + " |" + this.getNombre());
+		return ("$" + this.getPrecio() + " |" + this.getNombre() + " |CALORÍAS: " + this.getCalorias());
 	}
 
 
