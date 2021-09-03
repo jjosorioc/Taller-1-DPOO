@@ -31,5 +31,9 @@ public class Ingrediente
 		return this.costoAdicional;
 	}
 	
-
+	
+	public int getCalorias()
+	{
+		return (this.calorias);
+	}
 }

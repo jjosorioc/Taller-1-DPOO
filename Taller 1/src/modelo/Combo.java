@@ -58,4 +58,17 @@ public class Combo implements Producto
 		return this.itemsCombo;
 	}
 
+
+	@Override
+	public int getCalorias()
+	{
+		int cantidadCalorias = 0;
+		for (Producto p: this.itemsCombo)
+		{
+			cantidadCalorias += p.getCalorias();
+		}
+		
+		return cantidadCalorias;
+	}
+
 }

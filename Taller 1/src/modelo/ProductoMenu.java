@@ -37,4 +37,11 @@ public class ProductoMenu implements Producto
 		return ("$" + this.getPrecio() + " |" + this.getNombre());
 	}
 
+
+	@Override
+	public int getCalorias()
+	{
+		return (this.calorias);
+	}
+
 }

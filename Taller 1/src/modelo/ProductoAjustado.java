@@ -2,6 +2,10 @@ package modelo;
 
 import java.util.ArrayList;
 
+/**
+ * @author juanj
+ *
+ */
 public class ProductoAjustado implements Producto
 {
 	// Atributos
@@ -19,17 +23,16 @@ public class ProductoAjustado implements Producto
 	}
 
 	// Herencia
-	
+
 	public void addAgregado(Ingrediente nuevo)
 	{
 		agregados.add(nuevo);
 	}
-	
+
 	public void addEliminado(Ingrediente viejo)
 	{
 		eliminados.add(viejo);
 	}
-	
 
 	@Override
 	public String getNombre()
@@ -43,19 +46,19 @@ public class ProductoAjustado implements Producto
 			nombreString += " CON ";
 			for (Ingrediente i : this.agregados)
 			{
-				nombreString += " "+ i.getNombre();
+				nombreString += " " + i.getNombre();
 			}
 		}
-		
+
 		if (this.eliminados.size() != 0)
 		{
 			nombreString += " SIN ";
-			for (Ingrediente i: this.eliminados)
+			for (Ingrediente i : this.eliminados)
 			{
 				nombreString += " " + i.getNombre();
 			}
 		}
-		
+
 		return nombreString;
 	}
 
@@ -78,5 +81,27 @@ public class ProductoAjustado implements Producto
 		return ("$" + this.getPrecio() + " |" + this.getNombre());
 	}
 	
+	
+	/**
+	 *Retorna las calorías totales del producto ajustado. Se agregan las calorías de los ingredientes agregados y vice versa.
+	 *@return int: Calorías
+	 */
+	@Override
+	public int getCalorias()
+	{
+		int caloriasBase = this.base.getCalorias();
+
+		for (Ingrediente i : this.agregados)
+		{
+			caloriasBase += i.getCalorias();
+		}
+
+		for (Ingrediente i : this.eliminados)
+		{
+			caloriasBase -= i.getCalorias();
+		}
+
+		return caloriasBase;
+	}
 
 }
