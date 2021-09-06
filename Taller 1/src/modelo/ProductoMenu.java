@@ -12,7 +12,7 @@ public class ProductoMenu implements Producto
 	{
 		this.nombre = nombre;
 		this.precioBase = precioBase;
-		this.calorias = calorias;
+		this.calorias = calorias; //Se obtienen las calorías.
 	}
 	
 	
@@ -34,14 +34,14 @@ public class ProductoMenu implements Producto
 	@Override
 	public String generarTextoFactura()
 	{
-		return ("$" + this.getPrecio() + " |" + this.getNombre() + " |CALORÍAS: " + this.getCalorias());
+		return ("$" + this.getPrecio() + " |" + this.getNombre() + " |CALORÍAS: " + this.getCalorias());//Se genera el texto de la factura con la cantidad de calorías totales incluídas.
 	}
 
 
 	@Override
 	public int getCalorias()
 	{
-		return (this.calorias);
+		return (this.calorias);//Se obtienen las calorías.
 	}
 
 }

@@ -42,7 +42,7 @@ public class Combo implements Producto
 	@Override
 	public String generarTextoFactura()
 	{
-		return ("$" + this.getPrecio() + " |" + this.getNombre() + " |CALORÍAS: " + this.getCalorias());
+		return ("$" + this.getPrecio() + " |" + this.getNombre() + " |CALORÍAS: " + this.getCalorias());//Se imrpimen los datos de la factura incluyendo las calorías totales. 
 	}
 	
 	
@@ -65,7 +65,7 @@ public class Combo implements Producto
 		int cantidadCalorias = 0;
 		for (Producto p: this.itemsCombo)
 		{
-			cantidadCalorias += p.getCalorias();
+			cantidadCalorias += p.getCalorias();//Se obtiene la cantidad total de calorías.
 		}
 		
 		return cantidadCalorias;

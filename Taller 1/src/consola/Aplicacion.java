@@ -28,6 +28,8 @@ public class Aplicacion
 
 	private static Restaurante startRestaurante = new Restaurante();
 
+	
+
 	public static void main(String[] args) throws IOException
 	{
 
@@ -35,7 +37,7 @@ public class Aplicacion
 
 		// Carga de la información.
 		startRestaurante.cargarInformacionRestaurante((new File(nuestroDirectory + "/data/ingredientes.txt")), (new File(nuestroDirectory + "/data/menu.txt")),
-				(new File(nuestroDirectory + "/data/combos.txt")), (new File(nuestroDirectory + "/data/bebidas.txt")));
+				(new File(nuestroDirectory + "/data/combos.txt")), (new File(nuestroDirectory + "/data/bebidas.txt")));//Se extraen las bebidas del nuevo txt
 
 		Aplicacion aplicacion = new Aplicacion();
 
@@ -55,6 +57,11 @@ public class Aplicacion
 		System.out.println("*********************************************************\n");
 	}
 
+	
+	/**
+	 * Funciones de ejecución del menú
+	 * @throws IOException
+	 */
 	public void ejecutarOpcion() throws IOException
 	{
 		System.out.println("Iniciando programa...");

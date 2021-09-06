@@ -3,7 +3,7 @@ package modelo;
 import java.util.ArrayList;
 
 /**
- * @author juanj
+ * @author jj and thais :)
  *
  */
 public class ProductoAjustado implements Producto
@@ -93,15 +93,15 @@ public class ProductoAjustado implements Producto
 
 		for (Ingrediente i : this.agregados)
 		{
-			caloriasBase += i.getCalorias();
+			caloriasBase += i.getCalorias(); //Se suman las calorías de los ingredientes agregados.
 		}
 
 		for (Ingrediente i : this.eliminados)
 		{
-			caloriasBase -= i.getCalorias();
+			caloriasBase -= i.getCalorias(); //Se restan las calorías de los ingredientes eliminados.
 		}
 
-		return caloriasBase;
+		return caloriasBase; //Se obtienen las calorías totales.
 	}
 
 }

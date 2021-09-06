@@ -34,6 +34,6 @@ public class Ingrediente
 	
 	public int getCalorias()
 	{
-		return (this.calorias);
+		return (this.calorias);//Obtener calorías.
 	}
 }

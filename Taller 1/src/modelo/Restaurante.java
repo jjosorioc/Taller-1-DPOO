@@ -35,6 +35,11 @@ public class Restaurante
 		this.pedidoEnCurso = new Pedido(nombreCliente, direccionCliente);
 	}
 
+	
+	/**
+	 * Se cierra y se guarda un pedido.
+	 * @throws IOException
+	 */
 	public void cerrarYGuardarPedido() throws IOException
 	{
 		String nuestroDirectory = System.getProperty("user.dir") + "/facturas/";
@@ -42,7 +47,7 @@ public class Restaurante
 		File newFile = new File(nuestroDirectory + this.getPedidoEnCurso().getIdPedido() + ".txt");
 		this.getPedidoEnCurso().guardarFactura(newFile);
 
-		if (this.getPedidoEnCurso().equals(this.pedidos))
+		if (this.getPedidoEnCurso().equals(Restaurante.pedidos))
 		{
 			System.out.println("\nEXISTE un pedido idéntico a este.");
 		} else
@@ -50,7 +55,7 @@ public class Restaurante
 			System.out.println("\nNO EXISTE un pedido idéntico a este.");
 		}
 
-		this.pedidos.add(pedidoEnCurso);
+		Restaurante.pedidos.add(pedidoEnCurso);
 		this.pedidoEnCurso = null; // Se cierra el pedido.
 	}
 
@@ -64,7 +69,7 @@ public class Restaurante
 		return this.menuBase;
 	}
 
-	public ArrayList<Producto> getBebidas()
+	public ArrayList<Producto> getBebidas() //Se obtienen las bebidas.
 	{
 		return this.bebidas;
 	}
@@ -92,6 +97,11 @@ public class Restaurante
 		cargarBebidas(archivoBebidas);
 	}
 
+	/**
+	 * Se cargan los ingredientes
+	 * @param archivoIngredientes
+	 * @throws IOException
+	 */
 	private void cargarIngredientes(File archivoIngredientes) throws IOException
 	{
 		// ingredientes.txt
@@ -119,6 +129,12 @@ public class Restaurante
 
 	}
 
+	
+	/**
+	 * Se carga el Menú
+	 * @param archivoMenu
+	 * @throws IOException
+	 */
 	private void cargarMenu(File archivoMenu) throws IOException
 	{
 		// menu.txt
@@ -136,7 +152,7 @@ public class Restaurante
 
 			String nombreProducto = parteStrings[0];
 			int precioProducto = Integer.parseInt(parteStrings[1]);
-			int cantidadCalorias = Integer.parseInt(parteStrings[2]);
+			int cantidadCalorias = Integer.parseInt(parteStrings[2]);//Se extrea la cantidad de calorías de cada producto en el archivo.
 
 			ProductoMenu nuevoProducto = new ProductoMenu(nombreProducto, precioProducto, cantidadCalorias);
 
@@ -144,7 +160,13 @@ public class Restaurante
 			linea = br.readLine();
 		}
 	}
-
+	
+	
+	/**
+	 * Se cargan las bebidas
+	 * @param archivoBebidas
+	 * @throws IOException
+	 */
 	private void cargarBebidas(File archivoBebidas) throws IOException
 	{
 		// bebidas.txt
@@ -163,7 +185,7 @@ public class Restaurante
 
 			String nombreProducto = parteStrings[0];
 			int precioProducto = Integer.parseInt(parteStrings[1]);
-			int cantidadCalorias = Integer.parseInt(parteStrings[2]);
+			int cantidadCalorias = Integer.parseInt(parteStrings[2]);//Se extrea la cantidad de calorías de cada producto en el archivo.
 			
 			ProductoMenu nuevoProducto = new ProductoMenu(nombreProducto, precioProducto, cantidadCalorias);
 
@@ -172,6 +194,12 @@ public class Restaurante
 		}
 	}
 
+	
+	/**
+	 * Se cargan los combos
+	 * @param archivoCombos
+	 * @throws IOException
+	 */
 	private void cargarCombos(File archivoCombos) throws IOException
 	{
 		// combos.txt

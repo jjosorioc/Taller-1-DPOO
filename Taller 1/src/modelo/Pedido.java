@@ -14,7 +14,7 @@ public class Pedido
 	// Atributos
 	
 
-	private static int numeroPedidos;
+	private static int numeroPedidos;//El diagrama UML, aunque no se utilizó.
 	
 	private int idPedido;
 	
@@ -94,8 +94,12 @@ public class Pedido
 		// Cuánto es el IVA
 		return (int) (this.getPrecioNetoPedido() * 0.19);
 	}
-	
-	
+
+
+	/**
+	 * Se genera el texto de la factura
+	 * @return La factura
+	 */
 	public String generarTextoFactura() //TODO Volver PRIVATE
 	{
 		String facturaString = "";
@@ -103,13 +107,13 @@ public class Pedido
 		
 		int caloriasNetas = 0;
 		
-		for (Producto p: itemsPedido)
+		for (Producto p: itemsPedido)//Ciclo utilizado para obtener las calorías totales.
 		{
 			caloriasNetas += p.getCalorias();
 			facturaString += "\n- " + p.generarTextoFactura();
 		}
 		
-		facturaString += "\nCALORÍAS NETAS: " + caloriasNetas;
+		facturaString += "\nCALORÍAS NETAS: " + caloriasNetas; //Suma total de calorías en la factura.
 		facturaString += "\nPrecio Neto: " + this.getPrecioNetoPedido();
 		facturaString += "\nPrecio IVA: " + this.getPrecioIVAPedido();
 		facturaString += "\nPrecio Total: " + this.getPrecioTotalPedido();
@@ -117,6 +121,11 @@ public class Pedido
 	}
 	
 	
+	/**
+	 * Se guarda la facutra
+	 * @param archivo
+	 * @throws IOException
+	 */
 	public void guardarFactura(File archivo) throws IOException
 	{
 		if (archivo.createNewFile())
@@ -127,30 +136,14 @@ public class Pedido
 		}
 	}
 	
-	
+	/**
+	 * Se comparan únicamente los pedidos realizados en una misma sesión.
+	 * @param ArrayList<Pedido> pedidos
+	 * @return boolean
+	 */
 	public boolean equals(ArrayList<Pedido> pedidos)
 	{
-//		String nuestroDirectory = System.getProperty("user.dir") + "/facturas";
-//		File dirFile = new File(nuestroDirectory);
-//		
-//		for (File f: dirFile.listFiles())
-//		{
-//			f.createNewFile();
-//			Reader targetReader = new FileReader(f);
-//			
-//			BufferedReader bReader = new BufferedReader(targetReader);
-//			
-//			String textoFileString = bReader.toString();
-//			
-//			if ((this.generarTextoFactura()).equals(textoFileString))
-//			{
-//				return true;
-//			}
-//			
-//		}
-//		return false;
 		
-		// Pedidos mientras la app haya corrido.
 		
 		for (Pedido p: pedidos)
 		{
